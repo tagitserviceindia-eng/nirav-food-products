@@ -30,7 +30,8 @@ header h1{margin:0;font-size:1.4rem}
 }
 
 .banner img{
-  width:100%;max-height:420px;
+  width:100%;
+  max-height:420px;
   object-fit:cover
 }
 
@@ -117,6 +118,20 @@ footer p{margin:6px 0;font-size:.95rem}
   font-size:32px;
   text-decoration:none
 }
+
+  .call-btn{
+  background:#28a745;
+  color:#fff;
+  border:none;
+  border-radius:20px;
+  padding:8px 14px;
+  font-weight:700;
+  cursor:pointer;
+  margin-right:10px;
+  text-decoration:none;
+}
+.call-btn:hover{opacity:.9}
+  
 </style>
 </head>
 
@@ -124,11 +139,17 @@ footer p{margin:6px 0;font-size:.95rem}
 
 <header>
   <h1>Nirav Food Products</h1>
-  <button class="cart-btn" onclick="openCart()">🛒 Cart (<span id="cartCount">0</span>)</button>
+  <div>
+    <a href="tel:8075504725" class="call-btn">📞 Call</a>
+    <button class="cart-btn" onclick="openCart()">
+      🛒 Cart (<span id="cartCount">0</span>)
+    </button>
+  </div>
 </header>
 
+  
 <div class="banner">
-  <img src="banner.png" alt="Nirav Pickles Banner">
+  <img src="banner.jpg" alt="Nirav Pickles Banner">
 </div>
 
 <div class="notice">
@@ -140,6 +161,10 @@ footer p{margin:6px 0;font-size:.95rem}
 </section>
 
 <section id="cartPage">
+  <button onclick="goHome()" style="margin-bottom:20px;padding:8px 16px;border-radius:20px;border:none;background:#f4b400;font-weight:700;cursor:pointer">
+    ← Back to Home
+  </button>
+
   <h2>Your Cart</h2>
   <div id="cartItems"></div>
   <h3 id="total"></h3>
@@ -212,6 +237,11 @@ function openCart(){
   renderCart();
 }
 
+function goHome(){
+  document.getElementById('cartPage').style.display='none';
+  document.getElementById('shop').style.display='block';
+}
+
 function renderCart(){
   let total=0;
   const c=document.getElementById('cartItems');
@@ -234,11 +264,11 @@ function placeOrder(){
     msg+=`${i.name} - ${i.qty} - ₹${i.price}%0A`;
     total+=i.price;
   });
-  msg+=`Total Amount: ₹${total}%0A%0ADelivery: All Kerala / All India`;
+  msg+=`Total Amount: ₹${total}%0A%0ADelivery: All Kerala / All India (5 Days)`;
   window.open(`https://wa.me/918075504725?text=${msg}`,'_blank');
 }
 
-// fallback for wrong URLs
+// GitHub Pages fallback
 if(location.pathname!=='/' && !location.pathname.endsWith('index.html')){
   history.replaceState(null,'','/');
 }
