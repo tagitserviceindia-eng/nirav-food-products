@@ -1,142 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nirav Food Products | Kerala Style Homemade Pickles</title>
-  <style>
-    :root{
-      --primary:#8b0000;
-      --secondary:#f4b400;
-      --bg:#fffaf5;
-      --text:#2b2b2b;
-      --card:#ffffff;
-      --whatsapp:#25D366;
-    }
-    *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',sans-serif;}
-    body{background:var(--bg);color:var(--text);}
-
-    header{
-      background:linear-gradient(135deg,#8b0000,#b22222);
-      color:#fff;
-      padding:60px 20px;
-      text-align:center;
-      animation:fadeDown 1s ease;
-    }
-    header h1{font-size:2.8rem;}
-    header p{margin-top:8px;font-size:1.1rem;}
-
-    section{padding:60px 6%;}
-
-    .about{text-align:center;margin-bottom:50px;animation:fadeUp 1.2s ease;}
-    .about h2{color:var(--primary);margin-bottom:15px;font-size:2rem;}
-
-    .products{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:25px;
-    }
-    @media(max-width:900px){.products{grid-template-columns:repeat(2,1fr);}}
-
-    .card{
-      background:var(--card);
-      border-radius:16px;
-      padding:20px;
-      text-align:center;
-      box-shadow:0 10px 30px rgba(0,0,0,0.08);
-      transition:.4s;
-      position:relative;
-      overflow:hidden;
-    }
-    .card::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(120deg,transparent,rgba(244,180,0,0.25),transparent);
-      transform:translateX(-100%);
-      transition:.6s;
-    }
-    .card:hover::before{transform:translateX(100%);}    
-    .card:hover{transform:translateY(-10px);box-shadow:0 18px 45px rgba(0,0,0,0.15);}    
-
-    .bottle{
-      width:120px;height:180px;margin:0 auto 15px;
-      background:linear-gradient(to right,rgba(255,255,255,0.25),rgba(255,255,255,0.6));
-      border:2px solid rgba(0,0,0,0.1);
-      border-radius:20px 20px 10px 10px;position:relative;
-    }
-    .bottle::after{
-      content:"";position:absolute;top:-18px;left:35px;width:50px;height:18px;
-      background:#ddd;border-radius:6px 6px 0 0;
-    }
-    .liquid{
-      position:absolute;bottom:0;left:0;width:100%;height:60%;
-      background:linear-gradient(#ff8c00,#b22222);
-      border-radius:0 0 8px 8px;animation:wave 3s infinite;
-    }
-
-    .card h3{margin:10px 0 5px;color:var(--primary);}    
-    .type{font-size:.9rem;color:#666;}    
-    .price{font-weight:bold;margin:6px 0;}    
-    .qty{font-size:.85rem;color:#444;}    
-
-    footer{
-      background:#2b0000;color:#fff;padding:40px 20px;text-align:center;
-    }
-
-    /* WhatsApp Button */
-    .whatsapp{
-      position:fixed;bottom:25px;right:25px;
-      background:var(--whatsapp);color:#fff;
-      width:60px;height:60px;border-radius:50%;
-      display:flex;align-items:center;justify-content:center;
-      font-size:32px;text-decoration:none;
-      box-shadow:0 10px 25px rgba(0,0,0,0.3);
-      transition:.3s;z-index:1000;
-    }
-    .whatsapp:hover{transform:scale(1.1);}
-
-    @keyframes fadeDown{from{opacity:0;transform:translateY(-40px);}to{opacity:1;}}
-    @keyframes fadeUp{from{opacity:0;transform:translateY(40px);}to{opacity:1;}}
-    @keyframes wave{0%,100%{height:58%;}50%{height:62%;}}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nirav Food Products | Kerala Pickles</title>
+<style>
+:root{--primary:#8b0000;--accent:#f4b400;--bg:#fffaf5;--card:#fff}
+*{box-sizing:border-box;font-family:Segoe UI,sans-serif}
+body{margin:0;background:var(--bg)}
+header{position:sticky;top:0;z-index:1000;background:#2b0000;color:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:space-between}
+header h1{font-size:1.4rem}
+.cart-btn{background:var(--accent);border:none;border-radius:20px;padding:8px 16px;font-weight:700;cursor:pointer}
+.banner img{width:100%;max-height:420px;object-fit:cover}
+section{padding:40px 6%}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:25px}
+@media(max-width:900px){.products{grid-template-columns:repeat(2,1fr)}}
+.card{background:var(--card);border-radius:18px;padding:20px;text-align:center;box-shadow:0 10px 25px rgba(0,0,0,.1)}
+.card img{width:140px;height:180px;object-fit:contain}
+select,button{padding:8px 12px;border-radius:20px;border:1px solid #ccc;margin-top:8px}
+.add{background:var(--primary);color:#fff;border:none;cursor:pointer}
+#cartPage{display:none}
+.cart-item{display:flex;justify-content:space-between;margin:10px 0}
+.whatsapp{position:fixed;bottom:20px;right:20px;background:#25D366;color:#fff;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;text-decoration:none}
+</style>
 </head>
 <body>
-
 <header>
-  <h1>Nirav Food Products</h1>
-  <p>Nirav Pickles – Authentic Homemade Kerala Style Pickles</p>
-  <p>Vembayam, Trivandrum, Kerala</p>
+<h1>Nirav Food Products</h1>
+<button class="cart-btn" onclick="openCart()">🛒 Cart (<span id="cartCount">0</span>)</button>
 </header>
 
-<section>
-  <div class="about">
-    <h2>Our Pickles</h2>
-    <p>Traditional recipes • Homemade quality • Minimum order 200g</p>
-  </div>
+<div class="banner">
+<img src="banner.jpg" alt="Nirav Pickles Banner">
+</div>
 
-  <div class="products">
-    <div class="card"><div class="bottle"><div class="liquid"></div></div><h3>Mango Pickle</h3><div class="type">Veg Pickle</div><div class="price">₹60 / 200g</div><div class="qty">200g • 500g • 1kg</div></div>
-    <div class="card"><div class="bottle"><div class="liquid"></div></div><h3>Beetroot Pickle</h3><div class="type">Veg Pickle</div><div class="price">₹60 / 200g</div><div class="qty">200g • 500g • 1kg</div></div>
-    <div class="card"><div class="bottle"><div class="liquid"></div></div><h3>Lemon Pickle</h3><div class="type">Veg Pickle</div><div class="price">₹60 / 200g</div><div class="qty">200g • 500g • 1kg</div></div>
-    <div class="card"><div class="bottle"><div class="liquid"></div></div><h3>Bitter Gourd Pickle</h3><div class="type">Veg Pickle</div><div class="price">₹60 / 200g</div><div class="qty">200g • 500g • 1kg</div></div>
-    <div class="card"><div class="bottle"><div class="liquid"></div></div><h3>Ginger Pickle</h3><div class="type">Veg Pickle</div><div class="price">₹70 / 200g</div><div class="qty">200g • 500g • 1kg</div></div>
-    <div class="card"><div class="bottle"><div class="liquid"></div></div><h3>Dates Pickle</h3><div class="type">Sweet Pickle</div><div class="price">₹50 / 200g</div><div class="qty">200g • 500g • 1kg</div></div>
-    <div class="card"><div class="bottle"><div class="liquid"></div></div><h3>Garlic Pickle</h3><div class="type">Veg Pickle</div><div class="price">₹80 / 200g</div><div class="qty">200g • 500g • 1kg</div></div>
-    <div class="card"><div class="bottle"><div class="liquid"></div></div><h3>Chicken Pickle</h3><div class="type">Non‑Veg Pickle</div><div class="price">₹700 / kg</div><div class="qty">200g • 500g • 1kg</div></div>
-    <div class="card"><div class="bottle"><div class="liquid"></div></div><h3>Beef Pickle</h3><div class="type">Non‑Veg Pickle</div><div class="price">₹1000 / kg</div><div class="qty">200g • 500g • 1kg</div></div>
-    <div class="card"><div class="bottle"><div class="liquid"></div></div><h3>Tuna Pickle</h3><div class="type">Seafood Pickle</div><div class="price">₹1200 / kg</div><div class="qty">200g • 500g • 1kg</div></div>
-    <div class="card"><div class="bottle"><div class="liquid"></div></div><h3>Prawns Pickle</h3><div class="type">Seafood Pickle</div><div class="price">₹1200 / kg</div><div class="qty">200g • 500g • 1kg</div></div>
-  </div>
+<section id="shop">
+<div class="products" id="products"></div>
 </section>
 
-<footer>
-  <h3>Order Now</h3>
-  <p>📞 8075504725 | 9995214992</p>
-  <p>© Nirav Food Products, Kerala</p>
-</footer>
+<section id="cartPage">
+<h2>Your Cart</h2>
+<div id="cartItems"></div>
+<h3 id="total"></h3>
+<button class="add" onclick="placeOrder()">Place Order on WhatsApp</button>
+</section>
 
-<a class="whatsapp" href="https://wa.me/918075504725?text=Hello%20Nirav%20Food%20Products,%20I%20want%20to%20order%20pickles" target="_blank">🟢</a>
+<a class="whatsapp" href="https://wa.me/918075504725" target="_blank">🟢</a>
 
+<script>
+const products=[
+{name:'Mango Pickle',price:{'200g':60,'500g':150,'1kg':300},img:'mango.png'},
+{name:'Beetroot Pickle',price:{'200g':60,'500g':150,'1kg':300},img:'beetroot.png'},
+{name:'Lemon Pickle',price:{'200g':60,'500g':150,'1kg':300},img:'lemon.png'},
+{name:'Bitter Gourd Pickle',price:{'200g':60,'500g':150,'1kg':300},img:'bitter.png'},
+{name:'Ginger Pickle',price:{'200g':70,'500g':180,'1kg':350},img:'ginger.png'},
+{name:'Dates Pickle',price:{'200g':50,'500g':120,'1kg':240},img:'dates.png'},
+{name:'Garlic Pickle',price:{'200g':80,'500g':200,'1kg':400},img:'garlic.png'},
+{name:'Chicken Pickle',price:{'200g':140,'500g':350,'1kg':700},img:'chicken.png'},
+{name:'Beef Pickle',price:{'200g':200,'500g':500,'1kg':1000},img:'beef.png'},
+{name:'Tuna Pickle',price:{'200g':240,'500g':600,'1kg':1200},img:'tuna.png'},
+{name:'Prawns Pickle',price:{'200g':240,'500g':600,'1kg':1200},img:'prawns.png'}
+];
+let cart=[];
+
+const grid=document.getElementById('products');
+products.forEach((p,i)=>{
+const d=document.createElement('div');d.className='card';
+d.innerHTML=`<img src="${p.img}"><h3>${p.name}</h3>
+<select id="q${i}"><option>200g</option><option>500g</option><option>1kg</option></select>
+<button class="add" onclick="addToCart(${i})">Add to Cart</button>`;
+grid.appendChild(d);
+});
+
+function addToCart(i){const q=document.getElementById('q'+i).value;cart.push({name:products[i].name,qty:q,price:products[i].price[q]});document.getElementById('cartCount').innerText=cart.length}
+
+function openCart(){document.getElementById('shop').style.display='none';document.getElementById('cartPage').style.display='block';renderCart()}
+
+function renderCart(){let t=0;const c=document.getElementById('cartItems');c.innerHTML='';cart.forEach(it=>{t+=it.price;c.innerHTML+=`<div class='cart-item'><span>${it.name} (${it.qty})</span><span>₹${it.price}</span></div>`});document.getElementById('total').innerText='Total: ₹'+t}
+
+function placeOrder(){let msg='Hello Nirav Food Products,%0AOrder Details:%0A';let t=0;cart.forEach(i=>{msg+=`${i.name} - ${i.qty} - ₹${i.price}%0A`;t+=i.price});msg+=`Total: ₹${t}`;window.open(`https://wa.me/918075504725?text=${msg}`,'_blank')}
+</script>
+<script>
+// Handle direct access to unknown paths on GitHub Pages
+// Redirects any non-root path back to home
+if (location.pathname !== '/' && !location.pathname.endsWith('index.html')) {
+  history.replaceState(null, '', '/');
+}
+</script>
 </body>
 </html>
