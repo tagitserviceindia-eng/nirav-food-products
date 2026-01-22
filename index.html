@@ -3,101 +3,246 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nirav Food Products | Kerala Pickles</title>
+<title>Nirav Food Products | Homemade Kerala Pickles</title>
+
 <style>
-:root{--primary:#8b0000;--accent:#f4b400;--bg:#fffaf5;--card:#fff}
+:root{
+  --primary:#8b0000;
+  --accent:#f4b400;
+  --dark:#2b0000;
+  --bg:#fffaf5;
+}
 *{box-sizing:border-box;font-family:Segoe UI,sans-serif}
 body{margin:0;background:var(--bg)}
-header{position:sticky;top:0;z-index:1000;background:#2b0000;color:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:space-between}
-header h1{font-size:1.4rem}
-.cart-btn{background:var(--accent);border:none;border-radius:20px;padding:8px 16px;font-weight:700;cursor:pointer}
-.banner img{width:100%;max-height:420px;object-fit:cover}
+
+header{
+  position:sticky;top:0;z-index:1000;
+  background:var(--dark);color:#fff;
+  padding:12px 20px;
+  display:flex;justify-content:space-between;align-items:center
+}
+header h1{margin:0;font-size:1.4rem}
+.cart-btn{
+  background:var(--accent);
+  border:none;border-radius:20px;
+  padding:8px 16px;font-weight:700;
+  cursor:pointer
+}
+
+.banner img{
+  width:100%;max-height:420px;
+  object-fit:cover
+}
+
+.notice{
+  background:#fff3cd;
+  color:#664d03;
+  text-align:center;
+  padding:12px;
+  font-weight:600
+}
+
 section{padding:40px 6%}
-.products{display:grid;grid-template-columns:repeat(4,1fr);gap:25px}
-@media(max-width:900px){.products{grid-template-columns:repeat(2,1fr)}}
-.card{background:var(--card);border-radius:18px;padding:20px;text-align:center;box-shadow:0 10px 25px rgba(0,0,0,.1)}
-.card img{width:140px;height:180px;object-fit:contain}
-select,button{padding:8px 12px;border-radius:20px;border:1px solid #ccc;margin-top:8px}
-.add{background:var(--primary);color:#fff;border:none;cursor:pointer}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:25px
+}
+@media(max-width:900px){
+  .products{grid-template-columns:repeat(2,1fr)}
+}
+
+.card{
+  background:#fff;
+  border-radius:18px;
+  padding:20px;
+  text-align:center;
+  box-shadow:0 10px 25px rgba(0,0,0,.1);
+  transition:.3s
+}
+.card:hover{transform:translateY(-5px)}
+
+.card img{
+  width:140px;height:180px;
+  object-fit:contain
+}
+.card h3{margin:10px 0 5px}
+
+.price{
+  font-size:1.1rem;
+  color:var(--primary);
+  font-weight:700;
+  margin:6px 0
+}
+
+select,button{
+  padding:8px 12px;
+  border-radius:20px;
+  border:1px solid #ccc;
+  margin-top:8px
+}
+.add{
+  background:var(--primary);
+  color:#fff;border:none;
+  cursor:pointer
+}
+
 #cartPage{display:none}
-.cart-item{display:flex;justify-content:space-between;margin:10px 0}
-.whatsapp{position:fixed;bottom:20px;right:20px;background:#25D366;color:#fff;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;text-decoration:none}
+
+.cart-item{
+  display:flex;
+  justify-content:space-between;
+  margin:10px 0;
+  border-bottom:1px dashed #ccc;
+  padding-bottom:6px
+}
+
+footer{
+  background:var(--dark);
+  color:#fff;
+  text-align:center;
+  padding:25px 10px;
+  margin-top:40px
+}
+footer p{margin:6px 0;font-size:.95rem}
+
+.whatsapp{
+  position:fixed;
+  bottom:20px;right:20px;
+  background:#25D366;color:#fff;
+  width:60px;height:60px;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:32px;
+  text-decoration:none
+}
 </style>
 </head>
+
 <body>
+
 <header>
-<h1>Nirav Food Products</h1>
-<button class="cart-btn" onclick="openCart()">🛒 Cart (<span id="cartCount">0</span>)</button>
+  <h1>Nirav Food Products</h1>
+  <button class="cart-btn" onclick="openCart()">🛒 Cart (<span id="cartCount">0</span>)</button>
 </header>
 
 <div class="banner">
-<img src="banner.jpg" alt="Nirav Pickles Banner">
+  <img src="banner.jpg" alt="Nirav Pickles Banner">
+</div>
+
+<div class="notice">
+  🚚 All Kerala & All India Delivery Available | ⏱️ Delivered within 5 Days
 </div>
 
 <section id="shop">
-<div class="products" id="products"></div>
+  <div class="products" id="products"></div>
 </section>
 
 <section id="cartPage">
-<h2>Your Cart</h2>
-<div id="cartItems"></div>
-<h3 id="total"></h3>
-<button class="add" onclick="placeOrder()">Place Order on WhatsApp</button>
+  <h2>Your Cart</h2>
+  <div id="cartItems"></div>
+  <h3 id="total"></h3>
+  <button class="add" onclick="placeOrder()">Place Order on WhatsApp</button>
 </section>
+
+<footer>
+  <p><strong>Nirav Food Products</strong></p>
+  <p>Vembayam, Trivandrum, Kerala</p>
+  <p>Homemade Kerala Style Pickles</p>
+  <p>📞 8075504725 | 9995214992</p>
+</footer>
 
 <a class="whatsapp" href="https://wa.me/918075504725" target="_blank">🟢</a>
 
 <script>
 const products=[
-{name:'Mango Pickle',price:{'200g':60,'500g':150,'1kg':300},img:'mango.png'},
-{name:'Beetroot Pickle',price:{'200g':60,'500g':150,'1kg':300},img:'beetroot.png'},
-{name:'Lemon Pickle',price:{'200g':60,'500g':150,'1kg':300},img:'lemon.png'},
-{name:'Bitter Gourd Pickle',price:{'200g':60,'500g':150,'1kg':300},img:'bitter.png'},
-{name:'Ginger Pickle',price:{'200g':70,'500g':180,'1kg':350},img:'ginger.png'},
-{name:'Dates Pickle',price:{'200g':50,'500g':120,'1kg':240},img:'dates.png'},
-{name:'Garlic Pickle',price:{'200g':80,'500g':200,'1kg':400},img:'garlic.png'},
-{name:'Chicken Pickle',price:{'200g':140,'500g':350,'1kg':700},img:'chicken.png'},
-{name:'Beef Pickle',price:{'200g':200,'500g':500,'1kg':1000},img:'beef.png'},
-{name:'Tuna Pickle',price:{'200g':240,'500g':600,'1kg':1200},img:'tuna.png'},
-{name:'Prawns Pickle',price:{'200g':240,'500g':600,'1kg':1200},img:'prawns.png'}
+ {name:'Mango Pickle',img:'mango.png',price:{'200g':60,'500g':150,'1kg':300}},
+ {name:'Beetroot Pickle',img:'beetroot.png',price:{'200g':60,'500g':150,'1kg':300}},
+ {name:'Lemon Pickle',img:'lemon.png',price:{'200g':60,'500g':150,'1kg':300}},
+ {name:'Bitter Gourd Pickle',img:'bitter.png',price:{'200g':60,'500g':150,'1kg':300}},
+ {name:'Ginger Pickle',img:'ginger.png',price:{'200g':70,'500g':180,'1kg':350}},
+ {name:'Dates Pickle',img:'dates.png',price:{'200g':50,'500g':120,'1kg':240}},
+ {name:'Garlic Pickle',img:'garlic.png',price:{'200g':80,'500g':200,'1kg':400}},
+ {name:'Chicken Pickle',img:'chicken.png',price:{'200g':140,'500g':350,'1kg':700}},
+ {name:'Beef Pickle',img:'beef.png',price:{'200g':200,'500g':500,'1kg':1000}},
+ {name:'Tuna Pickle',img:'tuna.png',price:{'200g':240,'500g':600,'1kg':1200}},
+ {name:'Prawns Pickle',img:'prawns.png',price:{'200g':240,'500g':600,'1kg':1200}}
 ];
-let cart=[];
 
+let cart=[];
 const grid=document.getElementById('products');
+
 products.forEach((p,i)=>{
- const d=document.createElement('div');
- d.className='card';
- d.innerHTML=`<img src="${p.img}"><h3>${p.name}</h3>
- <p id="price${i}"><b>₹${p.price['200g']}</b> / 200g</p>
- <select id="q${i}" onchange="updatePrice(${i})">
-   <option value="200g">200g</option>
-   <option value="500g">500g</option>
-   <option value="1kg">1kg</option>
- </select>
- <button class="add" onclick="addToCart(${i})">Add to Cart</button>`;
- grid.appendChild(d);
-});
+  const d=document.createElement('div');
+  d.className='card';
+  d.innerHTML=`
+    <img src="${p.img}">
+    <h3>${p.name}</h3>
+    <div class="price" id="price${i}">₹${p.price['200g']} / 200g</div>
+    <select id="q${i}" onchange="updatePrice(${i})">
+      <option value="200g">200g</option>
+      <option value="500g">500g</option>
+      <option value="1kg">1kg</option>
+    </select><br>
+    <button class="add" onclick="addToCart(${i})">Add to Cart</button>
+  `;
+  grid.appendChild(d);
 });
 
 function updatePrice(i){
- const q=document.getElementById('q'+i).value;
- document.getElementById('price'+i).innerHTML=`<b>₹${products[i].price[q]}</b> / ${q}`;
+  const q=document.getElementById('q'+i).value;
+  document.getElementById('price'+i).innerText =
+    `₹${products[i].price[q]} / ${q}`;
 }
 
-function addToCart(i){const q=document.getElementById('q'+i).value;cart.push({name:products[i].name,qty:q,price:products[i].price[q]});document.getElementById('cartCount').innerText=cart.length}
+function addToCart(i){
+  const q=document.getElementById('q'+i).value;
+  cart.push({
+    name:products[i].name,
+    qty:q,
+    price:products[i].price[q]
+  });
+  document.getElementById('cartCount').innerText=cart.length;
+}
 
-function openCart(){document.getElementById('shop').style.display='none';document.getElementById('cartPage').style.display='block';renderCart()}
+function openCart(){
+  document.getElementById('shop').style.display='none';
+  document.getElementById('cartPage').style.display='block';
+  renderCart();
+}
 
-function renderCart(){let t=0;const c=document.getElementById('cartItems');c.innerHTML='';cart.forEach(it=>{t+=it.price;c.innerHTML+=`<div class='cart-item'><span>${it.name} (${it.qty})</span><span>₹${it.price}</span></div>`});document.getElementById('total').innerText='Total: ₹'+t}
+function renderCart(){
+  let total=0;
+  const c=document.getElementById('cartItems');
+  c.innerHTML='';
+  cart.forEach(it=>{
+    total+=it.price;
+    c.innerHTML+=`
+      <div class="cart-item">
+        <span>${it.name} (${it.qty})</span>
+        <span>₹${it.price}</span>
+      </div>`;
+  });
+  document.getElementById('total').innerText='Total: ₹'+total;
+}
 
-function placeOrder(){let msg='Hello Nirav Food Products,%0AOrder Details:%0A';let t=0;cart.forEach(i=>{msg+=`${i.name} - ${i.qty} - ₹${i.price}%0A`;t+=i.price});msg+=`Total: ₹${t}`;window.open(`https://wa.me/918075504725?text=${msg}`,'_blank')}
-</script>
-<script>
-// Handle direct access to unknown paths on GitHub Pages
-// Redirects any non-root path back to home
-if (location.pathname !== '/' && !location.pathname.endsWith('index.html')) {
-  history.replaceState(null, '', '/');
+function placeOrder(){
+  let msg='Hello Nirav Food Products,%0AOrder Details:%0A';
+  let total=0;
+  cart.forEach(i=>{
+    msg+=`${i.name} - ${i.qty} - ₹${i.price}%0A`;
+    total+=i.price;
+  });
+  msg+=`Total Amount: ₹${total}%0A%0ADelivery: All Kerala / All India`;
+  window.open(`https://wa.me/918075504725?text=${msg}`,'_blank');
+}
+
+// fallback for wrong URLs
+if(location.pathname!=='/' && !location.pathname.endsWith('index.html')){
+  history.replaceState(null,'','/');
 }
 </script>
+
 </body>
 </html>
